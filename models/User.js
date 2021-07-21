@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../controllers/api');
+const sequelize = require('../config/connection');
 const bcrypt = require('bcrypt');
 
 // Create the User model
@@ -23,7 +23,8 @@ User.init(
     // username column
     username: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     // email address column
     email: {
@@ -51,12 +52,17 @@ User.init(
         userData.password = await bcrypt.hash(userData.password, 10);
         return userData;
       },
-      sequelize,
-      timestamps: false,
-      freezeTableName: true,
-      undersored: true,
-      modelName: 'user'
-    }
+      // Using the hook to hash the password
+      async beforeUpdate(userData) {
+        userData.password = await bcrypt.hash(userData.password, 10);
+        return userData;
+      }
+    },
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'user'
   }
 );
 
