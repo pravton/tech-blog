@@ -1,0 +1,21 @@
+.swiper-container {
+  width: 1120px;
+  height: 400px;
+}
+
+.swiper-slide {
+  background-image: url('https://picsum.photos/1120/400');
+}
+
+/* limit the content to 3 lines */
+.content{
+  overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.post-feature {
+  border-radius: 5px;
+}

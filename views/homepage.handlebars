@@ -1,0 +1,23 @@
+<!-- Slider main container -->
+{{!-- <div class="swiper-container">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    {{#each posts as |post|}}
+    {{> hero-slider post}}
+    {{/each}}
+    <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
+</div> --}}
+<div class="container">
+  <h2 class="title is-2 mx-3">Popular Posts</h2>
+  {{#each posts as |post|}}
+  <div class="tile is-parent">
+    {{> post-info post}}
+  </div>
+  {{/each}}
+</div>
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="/javascripts/swiper.js"></script>
