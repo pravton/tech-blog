@@ -3,7 +3,9 @@
     <img class="post-feature" src="https://picsum.photos/1120/400" alt="">
     <h1 class="title is-1">{{post.title}}</h1> 
     <div class="main-content">
-      <p>{{post.content}}</p>
+      {{#each post.content as |content|}}
+      <p>{{content}}<br/></p>
+      {{/each}}
     </div>
     <h5 class="mt-3 title is-5">Written by {{post.user.username}} | on
     {{post.createdAt}}</h5>

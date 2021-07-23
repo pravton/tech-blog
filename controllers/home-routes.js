@@ -56,6 +56,8 @@ router.get('/posts/:id', (req, res) => {
   })
     .then(dbPostData => {
       const post = dbPostData.get({plain: true});
+      post.content = post.content.split("\n");
+  
       // pass a single post object into the homepage template
       res.render('single-post', {
         post,

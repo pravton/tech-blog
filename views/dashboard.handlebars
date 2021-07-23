@@ -47,4 +47,21 @@
   </form>
 </div>
 
+{{!-- User's Posts --}}
+<div class="container">
+  <h2 class="title is-2 mx-3 my-5">Your Posts</h2>
+  {{#each posts as |post|}}
+  <div class="tile is-parent">
+    <article class="tile is-child box">
+       {{> post-info post}}
+      <a href="/dashboard/edit/{{post.id}}" class="button has-background-primary-light"><i class="fas fa-edit"></i>&nbsp <strong>Edit this post</strong> </a>
+      <a id="post-delete" class="button has-background-danger-light" post-id="{{post.id}}"><i class="far fa-trash-alt">&nbsp <strong>Delete this post</strong> </i></a>
+    </article>
+  </div>
+  {{/each}}
+</div>
+
 <script src="/javascripts/create-post.js"></script>
+{{#if posts}}
+<script src="/javascripts/delete-post.js"></script>
+{{/if}}

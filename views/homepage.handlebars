@@ -12,7 +12,9 @@
   <h2 class="title is-2 mx-3">Popular Posts</h2>
   {{#each posts as |post|}}
   <div class="tile is-parent">
-    {{> post-info post}}
+    <article class="tile is-child box">
+      {{> post-info post}}
+    </article>
   </div>
   {{/each}}
 </div>
