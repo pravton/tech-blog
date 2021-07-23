@@ -8,4 +8,36 @@
     <h5 class="mt-3 title is-5">Written by {{post.user.username}} | on
     {{post.createdAt}}</h5>
   </article>
+
+  <div class="mt-3 box p-5">
+    <div class="create-post">
+      <h4 class="title is-4 mb-0">{{post.comments.length}} Comments</h4>
+      {{#if loggedIn}}
+      <div class="create-comment-buttons">
+        <button id="cm-close" class="button is-danger cm-close"><i class="fas fa-times"></i></button>
+        <button id="cm-add" class="button is-primary cm-add"><i class="fas fa-plus"></i></button>
+      </div>
+    </div>
+      <form id="comment-form" class="comment-form my-3">
+        <div class="field">
+          <label class="label">Enter a comment</label>
+          <div class="control">
+            <textarea id="comment-input" class="textarea" placeholder="eg: This is a great post!" rows="4"></textarea>
+          </div>
+        </div>
+        <div class="field">
+          <div class="field is-grouped">
+            <div class="control">
+              <button type="submit" class="button is-link">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      {{/if}}
+    {{> comments post.comments}}
+  </div>
 </div>
+
+{{#if loggedIn}}
+<script src="/javascripts/create-comments.js"></script>
+{{/if}}

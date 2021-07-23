@@ -50,9 +50,16 @@
   display: block !important;
 }
 
-
-
 .post-form {
+  display: none;
+}
+
+/* Comments section */
+.cm-close {
+  display: none;
+}
+
+.comment-form {
   display: none;
 }
 
