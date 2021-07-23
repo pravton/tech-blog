@@ -19,3 +19,22 @@
 .post-feature {
   border-radius: 5px;
 }
+
+/* Login Page */
+.login-container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-box {
+  width: 50%;
+}
+
+
+@media only screen and (max-width: 880px) {
+  .login-box {
+    width: 80%;
+  }
+}
