@@ -1,12 +1,13 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
 
 router.get('/', (req, res) => {
   Post.findAll({
+    order: [['created_at', 'DESC']],
     include: [
       {
         model: Comment,
+        order: [['created_at', 'DESC']],
         attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
         include: {
           model: User,
@@ -39,6 +40,7 @@ router.get('/posts/:id', (req, res) => {
     where: {
       id: req.params.id,
     },
+    order: [[Comment, 'created_at', 'DESC']],
     include: [
       {
         model: Comment,
@@ -51,11 +53,12 @@ router.get('/posts/:id', (req, res) => {
       {
         model: User,
         attributes: ['username']
-      }
+      },
     ]
   })
     .then(dbPostData => {
       const post = dbPostData.get({plain: true});
+      console.log(post);
       post.content = post.content.split("\n");
   
       // pass a single post object into the homepage template
@@ -76,7 +79,6 @@ router.get('/login', (req, res) => {
     res.redirect('/dashboard');
     return;
   }
-
   res.render('login');
 });
 

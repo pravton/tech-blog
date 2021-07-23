@@ -1,14 +1,15 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
+const {withAuth} = require('../utils/auth');
 
 // Find all posts entered by user
-router.get('/', (req, res) => {
+router.get('/', withAuth, (req, res) => {
   Post.findAll({
     where: {
       // use the id from the session
       user_id: req.session.user_id
     },
+    order: [['created_at', 'DESC']],
     include: [
       {
         model: Comment,
@@ -36,7 +37,7 @@ router.get('/', (req, res) => {
 });
 
 // edit a post
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', withAuth, (req, res) => {
   Post.findOne({
     where:  {
       id: req.params.id

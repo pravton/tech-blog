@@ -2,7 +2,7 @@
     {{#each this}}
     <section class="comment pb-3 mt-3">
       <div class="meta">
-        {{user.username}} on {{created_at}}
+        <i class="far fa-comments"></i> {{user.username}} • {{format_date created_at}}
       </div>
       <div class="text">
         <strong>{{comment_text}}</strong>

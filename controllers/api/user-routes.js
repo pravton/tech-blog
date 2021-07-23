@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
-
+const {withAuth} = require('../../utils/auth');
 
 // Get all users
 router.get('/', (req, res) => {
@@ -72,7 +72,7 @@ router.post('/', (req, res) => {
 });
 
 // Update a user
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
   User.update({
     username: req.body.username,
     email: req.body.email,
@@ -98,7 +98,7 @@ router.put('/:id', (req, res) => {
 });
 
 // Delete a user
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
   User.destroy({
     where: {
       id: req.params.id
@@ -149,7 +149,7 @@ router.post('/login', (req, res) => {
 });
 
 // Logout route
-router.post('/logout', (req, res) => {
+router.post('/logout', withAuth, (req, res) => {
   if(req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
