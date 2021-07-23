@@ -1,6 +1,6 @@
 <a href="/posts/{{id}}" class="title mb-3">{{title}}</a>
-<p class="mb-2">Written by {{user.username}} | on
-{{createdAt}}</p>
-<div class="content">
+<div class="short-content mt-3">
   <p>{{content}}</p>
 </div>
+<p class="mt-1 post-details">Written by {{user.username}} • Published on
+{{format_date createdAt}} • {{comments.length}} {{format_plural 'comment' comments.length}}</p>
