@@ -32,6 +32,36 @@
   width: 50%;
 }
 
+/* Dashboard Page  */
+.create-post {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cp-close {
+  display: none;
+}
+
+.display-hide {
+  display: none;
+}
+
+.display-block {
+  display: block !important;
+}
+
+
+
+.post-form {
+  display: none;
+}
+
+
+@media only screen and (max-width: 1024px) {
+  .nav-menu {
+    margin-bottom: 5em;
+  }
+}
 
 @media only screen and (max-width: 880px) {
   .login-box {

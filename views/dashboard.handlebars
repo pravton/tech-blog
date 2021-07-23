@@ -1,0 +1,50 @@
+<div class="box is-max-desktop pt-5 m-3">
+  <div class="create-post">
+    <h2 class="title is-2 mb-0">Create a Post</h2>
+    <div class="create-post-buttons">
+      <button id="cp-close" class="button is-danger cp-close"><i class="fas fa-times"></i></button>
+      <button id="cp-add" class="button is-primary cp-add"><i class="fas fa-plus"></i></button>
+    </div>
+  </div>
+  <form id="post-form" class="post-form my-5">
+    <div class="field">
+      <label class="label">Title</label>
+      <div class="control">
+        <input id="title-input" class="input" type="text" placeholder="Text input">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Content</label>
+      <div class="control">
+        <textarea id="content-input" class="textarea" placeholder="10 lines of textarea" rows="10"></textarea>
+      </div>
+    </div>
+      
+    <div class="field">
+      <label class="label">Upload a feature image</label>
+      <div class="file">
+        <label class="file-label">
+          <input id="file-input" class="file-input" type="file" name="feature">
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose a file…
+            </span>
+          </span>
+        </label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field is-grouped">
+        <div class="control">
+          <button type="submit" class="button is-link is-large">Submit</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src="/javascripts/create-post.js"></script>
