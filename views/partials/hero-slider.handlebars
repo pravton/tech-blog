@@ -1,9 +1,13 @@
 <!-- Slide -->
 <div class="swiper-slide">
-  <p class="title">{{title}}</p>
-  <p class="subtitle">Written by {{user.username}} | on
-  {{createdAt}}</p>
-  <div class="content">
-    <p>{{content}}</p>
+  <div class="box m-6 p-3 hero-content">
+    <div class="hero-post p-4">
+      <a href="/posts/{{id}}" class="title is-3 mb-1">{{title}}</a>
+      <div class="short-content hero-p">
+        <p>{{content}}</p>
+      </div>
+      <p class="mt-1 post-details">Written by <i class="fas fa-user"></i> {{user.username}} • Published on
+      <i class="far fa-calendar-alt"></i> {{format_date createdAt}} • <i class="far fa-comments"></i> {{comments.length}} {{format_plural 'comment' comments.length}}</p>
+    </div>
   </div>
 </div>

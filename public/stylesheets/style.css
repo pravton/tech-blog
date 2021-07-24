@@ -1,10 +1,23 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero content */
 .swiper-container {
-  width: 1120px;
   height: 400px;
+  border-radius: 5px;
 }
 
 .swiper-slide {
   background-image: url('https://picsum.photos/1120/400');
+  display: flex;
+}
+
+.hero-content {
+  background-color: rgba(255, 255, 255, 0.85);
+  align-self: flex-end;
 }
 
 /* limit the content to 3 lines */
@@ -67,6 +80,14 @@
   display: none;
 }
 
+.footer {
+  background: none;
+  margin-top: auto;
+}
+
+.w-100 {
+  width: 100%;
+}
 
 @media only screen and (max-width: 1024px) {
   .nav-menu {
@@ -77,5 +98,25 @@
 @media only screen and (max-width: 880px) {
   .login-box {
     width: 80%;
+  }
+
+  .is-1 {
+    font-size: 30px !important;
+  }
+
+  .is-2 {
+    font-size: 25px !important;
+  }
+
+  .is-3 {
+    font-size: 22px !important;
+  }
+
+  .hero-content {
+    margin: 30px 15px !important;
+  }
+
+  .hero-p {
+    display: none;
   }
 }
