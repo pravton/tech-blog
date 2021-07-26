@@ -10,6 +10,7 @@ A CMS-style blog site similar to a Wordpress site, where developers can publish 
 
 - [Installation](#%EF%B8%8F-installation)
 - [Usage](#%EF%B8%8F-usage)
+- [Demo App Link](#%EF%B8%8Fdeployed-application-link)
 - [License](#-license)
 - [Contributing](#-contributing)
 - [Final Output GIF](#%EF%B8%8F-final-output-gif)
@@ -30,7 +31,7 @@ You need to create and seed the database first, then start the server. Don't for
 
 1. Create the databse in mysql
 ```
-source db/schema.sql
+source db/db.sql
 ```
 2. Start the server
 ```
