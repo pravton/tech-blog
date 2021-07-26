@@ -148,7 +148,7 @@ router.delete("/:id", withAuth, (req, res) => {
   .then(dbDeletePostData => {
     image_url = dbDeletePostData.image_url;
     // delete teh file
-    filePath = path.join(__dirname, '../../public') + image_url;
+    const filePath = path.join(__dirname, '../../public') + image_url;
     if(fileInput) {
       fs.unlink(filePath, function (err) {
         if (err) throw err;
