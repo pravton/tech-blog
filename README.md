@@ -37,9 +37,12 @@ source db/schema.sql
 npm start
 ```
 
+## 🌐 Deployed Application Link
+[**Click Here**](http://just-tech-blog.herokuapp.com/) to view the final demo product.
+
 ## ▶️ Final Output GIF
 
-![Final Output](./src/images/final-output.gif "Final output of the project")
+![Final Output](./public/assets/images/final-output.gif "Final output of the project")
 
 ## 📝 License
 
