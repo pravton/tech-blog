@@ -12,6 +12,9 @@ body {
 
 .swiper-slide {
   background-image: url('https://picsum.photos/1120/400');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
 }
 

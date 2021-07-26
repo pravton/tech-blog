@@ -31,6 +31,9 @@ Post.init(
         model: 'user',
         key: 'id'
       }
+    },
+    image_url: {
+      type: DataTypes.STRING
     }
   },
   {

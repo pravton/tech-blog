@@ -12,28 +12,24 @@ function postButtonToggle() {
 document.querySelector('#cp-add').addEventListener('click', postButtonToggle);
 document.querySelector('#cp-close').addEventListener('click', postButtonToggle);
 
+// change the file name when uploading
+const fileInput = document.querySelector('#file-input');
+fileInput.onchange = () => {
+  document.querySelector('#file-name').textContent = fileInput.files[0].name;
+}
 
+// new for submit form
 async function newPostSubmit(event) {
   event.preventDefault();
 
-  console.log('button clicked');
-
-  const title = document.querySelector('#title-input').value;
-  const content = document.querySelector('#content-input').value;
-
-  console.log(title,content);
+  const form = document.querySelector('#post-form');
+  const formData = new FormData(form);
   const respose = await fetch('/api/posts', {
     method: 'POST',
-    body: JSON.stringify({
-      title,
-      content
-    }),
-    headers: {
-      'Content-Type' : 'application/json'
-    }
+    body:formData 
   });
 
-  console.log(respose);
+  console.log('this is response' , respose);
   if(respose.ok) {
     document.location.replace('/dashboard');
   } else {

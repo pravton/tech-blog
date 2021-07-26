@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('../../models');
 const {withAuth} = require('../../utils/auth');
+const fs = require('fs');
+const path = require('path');
 
 // Get all posts
 router.get('/', (req, res) => {
@@ -62,12 +64,44 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// Create a post
-router.post("/", withAuth, (req, res) => {
+// // Create a post
+// router.post("/", withAuth, (req, res) => {
+//   Post.create({
+//     title: req.body.title,
+//     content: req.body.content,
+//     user_id: req.session.user_id,
+//   })
+//     .then((dbPostData) => res.json(dbPostData))
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
+
+// FeatureImage Post
+router.post('/', withAuth, (req, res) => {
+
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+
+  let fileName = req.files.feature;
+  let uploadPath = path.join(__dirname, '../../public/assets/uploads/') + fileName.name;
+
+  // Use the mv() method to place the file
+  fileName.mv(uploadPath, function(err) {
+    if (err)
+      return res.status(500).send(err);
+
+    console.log('success');  
+  });
+
+  // Create the database instance
   Post.create({
     title: req.body.title,
     content: req.body.content,
     user_id: req.session.user_id,
+    image_url: ('/assets/uploads/' + fileName.name).replace(' ', '_')
   })
     .then((dbPostData) => res.json(dbPostData))
     .catch((err) => {
@@ -106,22 +140,38 @@ router.put("/:id", withAuth, (req, res) => {
 
 // delete a post
 router.delete("/:id", withAuth, (req, res) => {
-  Post.destroy({
+  Post.findOne({
     where: {
-      id: req.params.id,
-    },
+      id : req.params.id
+    }
   })
-    .then((dbPostData) => {
-      if (!dbPostData) {
-        res.status(404).res.json({ message: "No post dound with this id" });
-        return;
-      }
-      res.json(dbPostData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).res.json(err);
+  .then(dbDeletePostData => {
+    image_url = dbDeletePostData.image_url;
+    // delete teh file
+    fs.unlink(path.join(__dirname, '../../public') + image_url, function (err) {
+      if (err) throw err;
+      // if no error, file has been deleted successfully
+      console.log('File deleted!');
     });
+  })
+  .then(result => {
+    Post.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+      .then((dbPostData) => {
+        if (!dbPostData) {
+          res.status(404).res.json({ message: "No post dound with this id" });
+          return;
+        }
+        res.json(dbPostData);
+      })
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).res.json(err);
+  });
 });
 
 module.exports = router;
