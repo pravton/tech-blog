@@ -10,7 +10,7 @@ A CMS-style blog site similar to a Wordpress site, where developers can publish 
 
 - [Installation](#%EF%B8%8F-installation)
 - [Usage](#%EF%B8%8F-usage)
-- [Demo App Link](#%EF%B8%8F-deployed-application-link)
+- [Demo App Link](#-deployed-application-link)
 - [License](#-license)
 - [Contributing](#-contributing)
 - [Final Output GIF](#%EF%B8%8F-final-output-gif)
