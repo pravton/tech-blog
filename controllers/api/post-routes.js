@@ -86,7 +86,7 @@ router.post('/', withAuth, (req, res) => {
   }
 
   let fileName = req.files.feature;
-  let uploadPath = path.join(__dirname, '../../public/assets/uploads/') + fileName.name;
+  let uploadPath = path.join(__dirname, '../../public/assets/uploads/') + fileName.name.replace(/\s+/g, '-').toLowerCase()
 
   // Use the mv() method to place the file
   fileName.mv(uploadPath, function(err) {
@@ -101,7 +101,7 @@ router.post('/', withAuth, (req, res) => {
     title: req.body.title,
     content: req.body.content,
     user_id: req.session.user_id,
-    image_url: ('/assets/uploads/' + fileName.name).replace(' ', '_')
+    image_url: '/assets/uploads/' + fileName.name.replace(/\s+/g, '-').toLowerCase()
   })
     .then((dbPostData) => res.json(dbPostData))
     .catch((err) => {
