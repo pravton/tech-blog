@@ -1,0 +1,45 @@
+<div class="container p-3">
+  <article class="mt-3 tile is-child box p-5">
+    <img class="post-feature mb-3" src="{{post.image_url}}" alt="">
+    <h1 class="title is-1">{{post.title}}</h1> 
+    <div class="main-content">
+      {{#each post.content as |content|}}
+      <p>{{content}}<br/></p>
+      {{/each}}
+    </div>
+    <p class="mt-3"><strong> Written by <i class="fas fa-user"></i> {{post.user.username}} • Published on
+    <i class="far fa-calendar-alt"></i> {{format_date post.createdAt}}</strong></p>
+  </article>
+
+  <div class="mt-3 box p-5">
+    <div class="create-post">
+      <h4 class="title is-4 mb-0 pt-3">{{post.comments.length}} {{format_plural 'comment' post.comments.length}}</h4>
+      {{#if loggedIn}}
+      <div class="create-comment-buttons my-3">
+        <button id="cm-close" class="button is-danger cm-close"><i class="fas fa-times"></i></button>
+        <button id="cm-add" class="button is-primary cm-add"><i class="fas fa-plus"></i></button>
+      </div>
+      {{/if}}
+    </div>
+      {{#if loggedIn}}
+      <form id="comment-form" class="comment-form my-3">
+        <div class="field">
+          <label class="label">Enter a comment</label>
+          <div class="control">
+            <textarea id="comment-input" class="textarea" placeholder="eg: This is a great post!" rows="4"></textarea>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+              <button type="submit" class="button is-primary w-100">Submit</button>
+          </div>
+        </div>
+      </form>
+      {{/if}}
+      {{> comments post.comments}}
+  </div>
+</div>
+
+{{#if loggedIn}}
+<script src="/javascripts/create-comments.js"></script>
+{{/if}}

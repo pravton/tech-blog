@@ -1,0 +1,13 @@
+<div class="comments">
+    {{#each this}}
+    <hr class="solid m-0">
+    <section class="comment pb-3 mt-3">
+      <div class="meta">
+        <i class="far fa-comments"></i> {{user.username}} • {{format_date created_at}}
+      </div>
+      <div class="text">
+        <strong>{{comment_text}}</strong>
+      </div>
+    </section>
+    {{/each}}
+  </div>

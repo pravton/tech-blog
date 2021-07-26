@@ -1,0 +1,6 @@
+<a href="/posts/{{id}}" class="title is-2 mb-3">{{title}}</a>
+<div class="short-content mt-3">
+  <p>{{content}}</p>
+</div>
+<p class="mt-1 post-details">Written by <i class="fas fa-user"></i> {{user.username}} • Published on
+<i class="far fa-calendar-alt"></i> {{format_date createdAt}} • <i class="far fa-comments"></i> {{comments.length}} {{format_plural 'comment' comments.length}}</p>
