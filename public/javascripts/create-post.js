@@ -24,6 +24,7 @@ async function newPostSubmit(event) {
 
   const form = document.querySelector('#post-form');
   const formData = new FormData(form);
+  console.log(formData);
   const respose = await fetch('/api/posts', {
     method: 'POST',
     body:formData 
