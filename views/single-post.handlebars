@@ -1,6 +1,11 @@
 <div class="container p-3">
   <article class="mt-3 tile is-child box p-5">
-    <img class="post-feature mb-3" src="{{post.image_url}}" alt="">
+    <img class="post-feature mb-3" src="
+    {{#if post.image_url}}
+    {{post.image_url}}
+    {{else}}https://picsum.photos/1200/500
+    {{/if}}" 
+    alt="">
     <h1 class="title is-1">{{post.title}}</h1> 
     <div class="main-content">
       {{#each post.content as |content|}}
