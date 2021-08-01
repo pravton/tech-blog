@@ -80,13 +80,14 @@ router.get("/:id", (req, res) => {
 
 // FeatureImage Post
 router.post('/', withAuth, (req, res) => {
-
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
-
-  let fileName = req.files.feature;
-  let uploadPath = path.join(__dirname, '../../public/assets/uploads/') + fileName.name.replace(/\s+/g, '-').toLowerCase()
+  let imageData;
+  // if (!req.files || Object.keys(req.files).length === 0) {
+  //   return res.status(400).send({message: 'No photo was uploaded!'});
+  // }
+  if (req.files) {
+    let fileName = req.files.feature;
+    let uploadPath = path.join(__dirname, '../../public/assets/uploads/') + fileName.name.replace(/\s+/g, '-').toLowerCase()
+    imageData = '/assets/uploads/' + fileName.name.replace(/\s+/g, '-').toLowerCase();
 
   // Use the mv() method to place the file
   fileName.mv(uploadPath, function(err) {
@@ -96,12 +97,14 @@ router.post('/', withAuth, (req, res) => {
     console.log('success');  
   });
 
+  }
+
   // Create the database instance
   Post.create({
     title: req.body.title,
     content: req.body.content,
     user_id: req.session.user_id,
-    image_url: '/assets/uploads/' + fileName.name.replace(/\s+/g, '-').toLowerCase()
+    image_url: imageData ? imageData.toString() : ""
   })
     .then((dbPostData) => res.json(dbPostData))
     .catch((err) => {
@@ -146,16 +149,19 @@ router.delete("/:id", withAuth, (req, res) => {
     }
   })
   .then(dbDeletePostData => {
-    image_url = dbDeletePostData.image_url;
+    if(dbDeletePostData.image_url) {
+      image_url = dbDeletePostData.image_url;
     // delete teh file
-    const filePath = path.join(__dirname, '../../public') + image_url;
-    if(filePath) {
-      fs.unlink(filePath, function (err) {
-        if (err) throw err;
-        // if no error, file has been deleted successfully
-        console.log('File deleted!');
-      });
+      const filePath = path.join(__dirname, '../../public') + image_url;
+      if(fs.existsSync(filePath)) {
+        fs.unlink(filePath, function (err) {
+          if (err) throw err;
+          // if no error, file has been deleted successfully
+          console.log('File deleted!');
+        });
+      }
     }
+    return dbDeletePostData;
   })
   .then(result => {
     Post.destroy({
