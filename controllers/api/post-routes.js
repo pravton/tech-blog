@@ -149,16 +149,19 @@ router.delete("/:id", withAuth, (req, res) => {
     }
   })
   .then(dbDeletePostData => {
-    image_url = dbDeletePostData.image_url;
+    if(dbDeletePostData.image_url) {
+      image_url = dbDeletePostData.image_url;
     // delete teh file
-    const filePath = path.join(__dirname, '../../public') + image_url;
-    if(filePath) {
-      fs.unlink(filePath, function (err) {
-        if (err) throw err;
-        // if no error, file has been deleted successfully
-        console.log('File deleted!');
-      });
+      const filePath = path.join(__dirname, '../../public') + image_url;
+      if(fs.existsSync(filePath)) {
+        fs.unlink(filePath, function (err) {
+          if (err) throw err;
+          // if no error, file has been deleted successfully
+          console.log('File deleted!');
+        });
+      }
     }
+    return dbDeletePostData;
   })
   .then(result => {
     Post.destroy({
