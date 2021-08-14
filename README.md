@@ -13,6 +13,7 @@ A CMS-style blog site similar to a Wordpress site, where developers can publish 
 - [Demo App Link](#-deployed-application-link)
 - [License](#-license)
 - [Contributing](#-contributing)
+- [Final Output GIF](#%EF%B8%8F-final-output-gif)
 - [Questions](#-questions)
   
 
@@ -38,8 +39,11 @@ npm start
 ```
 
 ## 🌐 Deployed Application Link
-[**Click Here**](https://blooming-depths-68922.herokuapp.com/) to view the final demo product.
+[**Click Here**](http://just-tech-blog.herokuapp.com/) to view the final demo product.
 
+## ▶️ Final Output GIF
+
+![Final Output](./public/assets/images/final-output.gif "Final output of the project")
 
 ## 📝 License
 
@@ -58,4 +62,4 @@ If you have any questions regarding this application, please reach out via email
 
 📧 Email : pravton_dev@outlook.com
 
-🤖 GitHub : https://github.com/pravton 
+🤖 GitHub : https://github.com/pravton
