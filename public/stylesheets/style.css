@@ -5,17 +5,25 @@ body {
 }
 
 /* Hero content */
-.swiper-container {
+.swiper {
   height: 400px;
   border-radius: 5px;
 }
 
 .swiper-slide {
-  background-image: url('https://picsum.photos/1120/400');
+  /* background-image: url('https://picsum.photos/1120/400'); */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
+}
+
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after, .swiper-button-next:after, .swiper-rtl .swiper-button-prev:after {
+  color: #00c4a7;
+}
+
+.swiper-pagination-bullet, .swiper-pagination-bullet-active, .swiper-pagination-bullet-active-main {
+  background: #00c4a7;
 }
 
 .hero-content {

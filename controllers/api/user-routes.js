@@ -72,7 +72,8 @@ router.post('/', (req, res) => {
 });
 
 // Update a user
-router.put('/:id', withAuth, (req, res) => {
+router.put('/:id', (req, res) => {
+  console.log('this is the id: ', req.params.id);
   User.update({
     username: req.body.username,
     email: req.body.email,
@@ -98,7 +99,7 @@ router.put('/:id', withAuth, (req, res) => {
 });
 
 // Delete a user
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
   User.destroy({
     where: {
       id: req.params.id

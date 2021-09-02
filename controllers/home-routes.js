@@ -23,6 +23,12 @@ router.get('/', (req, res) => {
   })
     .then(dbPostData => {
       const posts = dbPostData.map(post => post.get({plain: true}));
+      // set temp images for the images that are not available.
+      posts.forEach(post => {
+        if(!post.image_url) {
+          post.image_url = 'https://picsum.photos/1120/400';
+        }
+      });
       // pass a single post object into the homepage template
       const totalPosts = [[], []];
       if(posts.length > 5) {
